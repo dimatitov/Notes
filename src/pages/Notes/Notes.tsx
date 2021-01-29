@@ -12,8 +12,11 @@ import Modal from '../../components/Modal/Modal'
 
 const Notes: FC<RouteComponentProps> = () => {
   const [isModal, setIsModal] = useState(false)
-  const handleClickAddNote = () => {
-    setIsModal(!isModal)
+  const handleClickOpenModal = () => {
+    setIsModal(true)
+  }
+  const handleClickCloseModal = () => {
+    setIsModal(false)
   }
 
   return (
@@ -25,13 +28,13 @@ const Notes: FC<RouteComponentProps> = () => {
             <Top
               title={'Заголовок'}
               button={
-                <Button title={'Добавить заметку'} icon={add} handleClick={handleClickAddNote} />
+                <Button title={'Добавить заметку'} icon={add} handleClick={handleClickOpenModal} />
               }
             />
           </NotesContainer>
         </Content>
       </WrapperOpacity>
-      <Modal isModal={isModal} />
+      <Modal isModal={isModal} handleClickCloseModal={handleClickCloseModal} />
     </>
   )
 }

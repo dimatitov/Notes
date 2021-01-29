@@ -11,7 +11,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ title, icon, handleClick }) => {
   return (
     <DefaultButton onClick={handleClick}>
-      <Icon src={icon} alt="icon" />
+      {icon && <Icon src={icon} alt="icon" />}
       {title}
     </DefaultButton>
   )
