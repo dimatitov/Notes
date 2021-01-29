@@ -8,6 +8,7 @@ export const ModalContainer = styled.section<Props>`
   padding: 25px 55px 40px 55px;
   width: 17%;
   max-width: 470px;
+  min-width: 350px;
   position: fixed;
   top: 50%;
   left: 50%;
