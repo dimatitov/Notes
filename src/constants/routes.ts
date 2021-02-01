@@ -3,4 +3,8 @@ export const ROUTES = {
     path: '/',
     title: 'Notes',
   },
+  NOTE: {
+    path: '/note/:noteId',
+    title: 'Note',
+  },
 }

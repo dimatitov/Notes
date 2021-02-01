@@ -1,4 +1,5 @@
 import React from 'react'
+import { navigate } from '@reach/router'
 
 import {
   ModalContainer,
@@ -27,6 +28,10 @@ interface Props {
 }
 
 const Modal: React.FC<Props> = ({ isModal, handleClickCloseModal }) => {
+  const handleClickToNote = () => {
+    console.log('add')
+  }
+
   return (
     <ModalContainer isActive={isModal}>
       <ButtonRightWrapper>
@@ -49,7 +54,7 @@ const Modal: React.FC<Props> = ({ isModal, handleClickCloseModal }) => {
       <NoteInput inputForm={<TextArea placeholder={'Введите комментарий'} />}>
         Комментарий
       </NoteInput>
-      <Button title={'Добавить'} handleClick={handleClickCloseModal} />
+      <Button title={'Добавить'} handleClick={handleClickToNote} />
     </ModalContainer>
   )
 }

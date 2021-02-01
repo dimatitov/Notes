@@ -1,10 +1,17 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.div`
-  padding: 120px 20px 50px 20px;
+interface Props {
+  readonly button?: boolean
+}
+
+export const WrapperTop = styled.div<Props>`
+  padding: ${(props) => (props.button ? '120px 20px 50px 20px' : '140px 20px 50px 20px')};
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+`
+
+export const ButtonToBack = styled.div`
+  margin-bottom: 20px;
 `
 
 export const Title = styled.h1`
@@ -16,4 +23,10 @@ export const Title = styled.h1`
   align-items: center;
   color: #333333;
   margin: 0;
+`
+
+export const FlexWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `

@@ -1,18 +1,23 @@
 import React, { ReactNode } from 'react'
 
-import { Wrapper, Title } from './Top.styled'
+import { WrapperTop, Title, FlexWrapper, ButtonToBack } from './Top.styled'
 
 interface TopContainerProps {
   title: string
   button?: ReactNode
+  buttonIcon?: ReactNode
+  buttonToBack: boolean
 }
 
-const Top: React.FC<TopContainerProps> = ({ title, button }) => {
+const Top: React.FC<TopContainerProps> = ({ title, button, buttonIcon, buttonToBack }) => {
   return (
-    <Wrapper>
-      <Title>{title}</Title>
-      {button}
-    </Wrapper>
+    <WrapperTop button={buttonToBack}>
+      <ButtonToBack>{buttonIcon}</ButtonToBack>
+      <FlexWrapper>
+        <Title>{title}</Title>
+        {button}
+      </FlexWrapper>
+    </WrapperTop>
   )
 }
 
