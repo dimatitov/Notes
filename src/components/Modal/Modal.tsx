@@ -1,5 +1,4 @@
-import React from 'react'
-import { navigate } from '@reach/router'
+import React, { SetStateAction, useContext, useState } from 'react'
 
 import {
   ModalContainer,
@@ -8,9 +7,13 @@ import {
   WrapperButton,
   ButtonRightWrapper,
 } from './Modal.styled'
+import { NotesContext } from '../../App'
+
 import ButtonIcon from '../ButtonIcon/ButtonIcon'
 import NoteInput from '../NoteInput/NoteInput'
 import Input from '../Input/Input'
+import TextArea from '../TextArea/TextArea'
+import Button from '../Button/Button'
 
 import close from '../../assets/img/close.png'
 import bold from '../../assets/img/bold.png'
@@ -19,19 +22,22 @@ import underline from '../../assets/img/underlined.png'
 import numList from '../../assets/img/list_numbered.png'
 import pointList from '../../assets/img/list_bulleted.png'
 import replay from '../../assets/img/replay.svg'
-import TextArea from '../TextArea/TextArea'
-import Button from '../Button/Button'
 
 interface Props {
   isModal: boolean
   handleClickCloseModal: () => void
+  setStateText: React.Dispatch<SetStateAction<string>>
+  setStateTitle: React.Dispatch<SetStateAction<string>>
+  handleClick: () => void
 }
 
-const Modal: React.FC<Props> = ({ isModal, handleClickCloseModal }) => {
-  const handleClickToNote = () => {
-    console.log('add')
-  }
-
+const Modal: React.FC<Props> = ({
+  isModal,
+  handleClickCloseModal,
+  handleClick,
+  setStateText,
+  setStateTitle,
+}) => {
   return (
     <ModalContainer isActive={isModal}>
       <ButtonRightWrapper>
@@ -48,13 +54,29 @@ const Modal: React.FC<Props> = ({ isModal, handleClickCloseModal }) => {
         </WrapperTextControlButton>
         <ButtonIcon icon={replay} />
       </WrapperButton>
-      <NoteInput inputForm={<Input placeholder={'Введите заголовок заметки'} />}>
+      <NoteInput
+        inputForm={
+          <Input
+            placeholder={'Введите заголовок заметки'}
+            handleChange={(e) => setStateTitle(e.currentTarget.value)}
+          />
+        }
+      >
         Название заметки
       </NoteInput>
-      <NoteInput inputForm={<TextArea placeholder={'Введите комментарий'} />}>
+      <NoteInput
+        inputForm={
+          <TextArea
+            placeholder={'Введите комментарий'}
+            handleChange={(e) => {
+              setStateText(e.currentTarget.value)
+            }}
+          />
+        }
+      >
         Комментарий
       </NoteInput>
-      <Button title={'Добавить'} handleClick={handleClickToNote} />
+      <Button title={'Добавить'} handleClick={handleClick} />
     </ModalContainer>
   )
 }

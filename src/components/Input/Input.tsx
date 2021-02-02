@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { InputForm } from './Input.styled'
 
-interface Props {
+interface IInput {
   placeholder: string
+  handleChange: (e: React.FormEvent<HTMLInputElement>) => void
 }
 
-const Input: React.FC<Props> = ({ placeholder }) => {
-  return <InputForm placeholder={placeholder} />
+const Input: React.FC<IInput> = ({ placeholder, handleChange }) => {
+  return <InputForm placeholder={placeholder} onChange={handleChange} />
 }
 
 export default Input

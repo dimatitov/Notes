@@ -22,15 +22,17 @@ const Note: FC<RouteComponentProps> = () => {
   const [note, setNote] = useState<INote>({} as INote)
   const [isEdit, setIsEdit] = useState(false)
   const [textNote, setTextNote] = useState('')
-  const { setNotes } = useContext(NotesContext)
+  const { setNotes, notes } = useContext(NotesContext)
 
   useEffect(() => {
     setTextNote(note.text)
   }, [note])
   useEffect(() => {
     ;(async () => {
-      const response = await getNoteById(noteId)
-      setNote(response.note)
+      if (notes) {
+        const response = await getNoteById(noteId, notes)
+        setNote(response.note)
+      }
     })()
   }, [])
   const handleClickEditingNote = (): void => {
@@ -49,9 +51,16 @@ const Note: FC<RouteComponentProps> = () => {
   const handleClickToBack = (): void => {
     navigate('/')
   }
-  // const handleClickToDelete = (): void => {
-  //
-  // }
+  const handleClickToDelete = (): void => {
+    if (setNotes) {
+      setNotes((notes) => {
+        return notes.filter((note) => {
+          return note.id != noteId
+        })
+      })
+      navigate('/')
+    }
+  }
 
   return (
     <>

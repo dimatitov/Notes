@@ -6,7 +6,6 @@ interface Props {
   title: string
   date: string
   id: number
-  // handleClick: ReactNode
 }
 
 const NoteItem: React.FC<Props> = ({ title, date, id }) => {
